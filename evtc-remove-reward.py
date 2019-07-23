@@ -1,7 +1,21 @@
 #!/usr/bin/python3
 
+# Removes reward events from EVTC files. Has to be used on non-compressed
+# logs, can be used to batch-process
+
+# This can be useful for testing success detection when reward events
+# are not present, for example because this is not the first weekly clear
+
+# Example usage:
+#  ./evtc-remove-reward.py 20190412-210528.evtc 20190420-204619.evtc
+# Will create two files:
+#  20190412-210528.evtc-mod
+#  20190420-204619.evtc-mod
+
+
 from sys import argv
 import struct
+
 
 def skip_bytes(f, result, n):
     for x in range(n):
